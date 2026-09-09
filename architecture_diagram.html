@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RoadSafe AI — Architecture Diagram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0F172A;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .toolbar {
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn {
+      background: #2563EB;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #1D4ED8; }
+    .btn-secondary {
+      background: #1E293B;
+      color: #94A3B8;
+      border: 1px solid #334155;
+    }
+    .btn-secondary:hover { background: #334155; color: white; }
+    .canvas-container {
+      width: 100%;
+      max-width: 1200px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      border: 1px solid #334155;
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div style="color: white;">
+      <h1 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 700;">RoadSafe AI — Architecture Diagram</h1>
+      <p style="color: #94A3B8; font-size: 12px;">High-Resolution Vector Blueprint (React 18 + R Plumber + Random Forest)</p>
+    </div>
+    <div style="display: flex; gap: 12px;">
+      <button class="btn btn-secondary" onclick="window.print()">🖨️ Print Diagram</button>
+      <a href="./architecture_diagram.svg" download="RoadSafe_AI_Architecture.svg" class="btn">⬇️ Download SVG</a>
+    </div>
+  </div>
+
+  <div class="canvas-container">
+    <!-- Embed SVG content -->
+    <object data="./architecture_diagram.svg" type="image/svg+xml" style="width: 100%; height: auto;"></object>
+  </div>
+</body>
+</html>

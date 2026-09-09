@@ -1,0 +1,137 @@
+{
+  "timestamp": "2026-09-05T10:12:35Z",
+  "production_model": "Random Forest",
+  "production_accuracy": 0.683,
+  "models": [
+    {
+      "name": "Random Forest",
+      "accuracy": 0.683,
+      "precision": 0.6967,
+      "recall": 0.706,
+      "f1": 0.7013,
+      "roc_auc": 0.932,
+      "status": "Active Production"
+    },
+    {
+      "name": "XGBoost Classifier",
+      "accuracy": 0.881,
+      "precision": 0.869,
+      "recall": 0.858,
+      "f1": 0.863,
+      "roc_auc": 0.941,
+      "status": "Candidate"
+    },
+    {
+      "name": "Decision Tree (CART)",
+      "accuracy": 0.637,
+      "precision": 0.6414,
+      "recall": 0.6535,
+      "f1": 0.6474,
+      "roc_auc": 0.845,
+      "status": "Benchmark"
+    },
+    {
+      "name": "Multinomial Logistic Regression",
+      "accuracy": 0.708,
+      "precision": 0.7165,
+      "recall": 0.7294,
+      "f1": 0.7229,
+      "roc_auc": 0.812,
+      "status": "Baseline"
+    }
+  ],
+  "feature_importance": [
+    {
+      "Feature": "driver_age",
+      "MeanDecreaseGini": 306.9849,
+      "ImportancePct": 13.95,
+      "_row": "driver_age"
+    },
+    {
+      "Feature": "road_surface",
+      "MeanDecreaseGini": 306.3538,
+      "ImportancePct": 13.92,
+      "_row": "road_surface"
+    },
+    {
+      "Feature": "weather",
+      "MeanDecreaseGini": 262.5652,
+      "ImportancePct": 11.93,
+      "_row": "weather"
+    },
+    {
+      "Feature": "speed_limit",
+      "MeanDecreaseGini": 216.4619,
+      "ImportancePct": 9.83,
+      "_row": "speed_limit"
+    },
+    {
+      "Feature": "junction_type",
+      "MeanDecreaseGini": 193.7241,
+      "ImportancePct": 8.8,
+      "_row": "junction_type"
+    },
+    {
+      "Feature": "vehicle_type",
+      "MeanDecreaseGini": 184.3626,
+      "ImportancePct": 8.38,
+      "_row": "vehicle_type"
+    },
+    {
+      "Feature": "light_condition",
+      "MeanDecreaseGini": 182.4178,
+      "ImportancePct": 8.29,
+      "_row": "light_condition"
+    },
+    {
+      "Feature": "road_type",
+      "MeanDecreaseGini": 167.6301,
+      "ImportancePct": 7.62,
+      "_row": "road_type"
+    },
+    {
+      "Feature": "number_of_vehicles",
+      "MeanDecreaseGini": 136.106,
+      "ImportancePct": 6.18,
+      "_row": "number_of_vehicles"
+    },
+    {
+      "Feature": "number_of_casualties",
+      "MeanDecreaseGini": 129.7842,
+      "ImportancePct": 5.9,
+      "_row": "number_of_casualties"
+    },
+    {
+      "Feature": "driver_gender",
+      "MeanDecreaseGini": 58.5441,
+      "ImportancePct": 2.66,
+      "_row": "driver_gender"
+    },
+    {
+      "Feature": "urban_rural",
+      "MeanDecreaseGini": 56.2215,
+      "ImportancePct": 2.55,
+      "_row": "urban_rural"
+    }
+  ],
+  "confusion_matrix": {
+    "classes": ["Minor", "Serious", "Fatal"],
+    "matrix": {
+      "Minor": {
+        "Minor": 580,
+        "Serious": 42,
+        "Fatal": 8
+      },
+      "Serious": {
+        "Minor": 38,
+        "Serious": 286,
+        "Fatal": 16
+      },
+      "Fatal": {
+        "Minor": 4,
+        "Serious": 18,
+        "Fatal": 68
+      }
+    }
+  }
+}

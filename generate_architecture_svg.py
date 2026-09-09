@@ -1,0 +1,241 @@
+import os
+
+def create_architecture_svg(filename="architecture_diagram.svg"):
+    svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #F8FAFC; }
+      .layer-card { rx: 16; stroke-width: 1.5; }
+      .layer-1 { fill: #EFF6FF; stroke: #93C5FD; }
+      .layer-2 { fill: #FFFFFF; stroke: #CBD5E1; }
+      .layer-3 { fill: #F0FDF4; stroke: #86EFAC; }
+      .layer-4 { fill: #FEF3C7; stroke: #FCD34D; }
+      .component-card { fill: #FFFFFF; rx: 10; stroke: #E2E8F0; stroke-width: 1.2; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.04)); }
+      .component-card-active { fill: #2563EB; rx: 10; filter: drop-shadow(0 4px 6px rgba(37,99,235,0.25)); }
+      .title-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 24px; font-weight: 800; fill: #0F172A; }
+      .subtitle-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; font-weight: 500; fill: #64748B; }
+      .layer-title { font-family: 'Inter', -apple-system, sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .layer-sub { font-family: 'Inter', -apple-system, sans-serif; font-size: 11px; font-weight: 500; }
+      .card-title { font-family: 'Inter', -apple-system, sans-serif; font-size: 12px; font-weight: 700; fill: #1E293B; }
+      .card-desc { font-family: 'Inter', -apple-system, sans-serif; font-size: 10px; font-weight: 400; fill: #64748B; }
+      .badge { rx: 6; }
+      .arrow { stroke: #3B82F6; stroke-width: 2; fill: none; stroke-dasharray: 4,4; }
+      .arrow-solid { stroke: #2563EB; stroke-width: 2.5; fill: none; }
+      .arrow-marker { fill: #2563EB; }
+    </style>
+    
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" class="arrow-marker" />
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#10B981" />
+    </marker>
+    
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1200" height="900" class="bg" />
+
+  <!-- Header Section -->
+  <g transform="translate(60, 40)">
+    <rect x="0" y="0" width="48" height="48" rx="12" fill="#2563EB" />
+    <path d="M24 12 L36 17 L36 27 C36 34 24 39 24 39 C24 39 12 34 12 27 L12 17 Z" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <text x="64" y="28" class="title-text">RoadSafe AI — System Architecture</text>
+    <text x="64" y="46" class="subtitle-text">Full-Stack Road Accident Severity Prediction &amp; Geospatial Intelligence Platform</text>
+    
+    <!-- Badges -->
+    <rect x="880" y="12" width="90" height="24" rx="12" fill="#EFF6FF" stroke="#BFDBFE" />
+    <text x="925" y="28" font-family="Inter" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="middle">React 18 + TS</text>
+
+    <rect x="980" y="12" width="100" height="24" rx="12" fill="#FEF3C7" stroke="#FDE68A" />
+    <text x="1030" y="28" font-family="Inter" font-size="11" font-weight="700" fill="#B45309" text-anchor="middle">R Plumber API</text>
+  </g>
+
+  <!-- ==================== LAYER 1: CLIENT & USERS ==================== -->
+  <g transform="translate(60, 110)">
+    <rect width="1080" height="110" class="layer-card layer-1" filter="url(#shadow)"/>
+    <text x="24" y="32" class="layer-title" fill="#1E40AF">1. Presentation &amp; Stakeholder Layer</text>
+    <text x="24" y="48" class="layer-sub" fill="#3B82F6">Web Clients, Traffic Management Centers &amp; Public Safety Officials</text>
+
+    <!-- Cards -->
+    <g transform="translate(24, 58)">
+      <rect width="240" height="42" class="component-card" />
+      <text x="16" y="22" class="card-title">👮 Traffic Police Operations</text>
+      <text x="16" y="34" class="card-desc">High-risk patrol &amp; speed enforcement</text>
+    </g>
+
+    <g transform="translate(284, 58)">
+      <rect width="240" height="42" class="component-card" />
+      <text x="16" y="22" class="card-title">🏛️ Highway Transport Authority</text>
+      <text x="16" y="34" class="card-desc">Civil engineering &amp; road maintenance</text>
+    </g>
+
+    <g transform="translate(544, 58)">
+      <rect width="240" height="42" class="component-card" />
+      <text x="16" y="22" class="card-title">📊 Road Safety Analysts</text>
+      <text x="16" y="34" class="card-desc">Vision Zero policy &amp; audit reporting</text>
+    </g>
+
+    <g transform="translate(804, 58)">
+      <rect width="252" height="42" class="component-card" />
+      <text x="16" y="22" class="card-title">💻 Modern Web Browsers</text>
+      <text x="16" y="34" class="card-desc">Chrome, Safari, Edge (Desktop &amp; Tablet)</text>
+    </g>
+  </g>
+
+  <!-- Connector Line 1 to 2 -->
+  <path d="M 600 220 L 600 250" class="arrow-solid" marker-end="url(#arrowhead)"/>
+  <rect x="525" y="225" width="150" height="20" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="600" y="239" font-family="Inter" font-size="10" font-weight="600" fill="#2563EB" text-anchor="middle">HTTPS / JSON REST API</text>
+
+  <!-- ==================== LAYER 2: FRONTEND APPLICATION ==================== -->
+  <g transform="translate(60, 255)">
+    <rect width="1080" height="220" class="layer-card layer-2" filter="url(#shadow)"/>
+    <text x="24" y="30" class="layer-title" fill="#0F172A">2. Frontend Application Layer (React 18 + Vite + TypeScript + Tailwind CSS)</text>
+    <text x="24" y="46" class="layer-sub" fill="#64748B">Modular Single Page Application (SPA) with Geospatial GIS &amp; Reactive Telemetry</text>
+
+    <!-- Top Row: UI Modules -->
+    <g transform="translate(24, 58)">
+      <rect width="195" height="65" class="component-card" />
+      <text x="14" y="22" class="card-title">📊 Executive Dashboard</text>
+      <text x="14" y="38" class="card-desc">6 KPI metrics, YoY trends,</text>
+      <text x="14" y="52" class="card-desc">24h crash density &amp; weather</text>
+    </g>
+
+    <g transform="translate(235, 58)">
+      <rect width="195" height="65" class="component-card" />
+      <text x="14" y="22" class="card-title">🗺️ Leaflet GIS Hotspots</text>
+      <text x="14" y="38" class="card-desc">Interactive geo coordinates,</text>
+      <text x="14" y="52" class="card-desc">risk pins &amp; danger circles</text>
+    </g>
+
+    <g transform="translate(446, 58)">
+      <rect width="195" height="65" class="component-card" style="stroke: #2563EB; stroke-width: 1.5;"/>
+      <text x="14" y="22" class="card-title" fill="#1D4ED8">🧠 AI Severity Predictor</text>
+      <text x="14" y="38" class="card-desc">Multi-variable crash form,</text>
+      <text x="14" y="52" class="card-desc">0-100 gauge &amp; probabilities</text>
+    </g>
+
+    <g transform="translate(657, 58)">
+      <rect width="195" height="65" class="component-card" />
+      <text x="14" y="22" class="card-title">🔬 Explainable AI (XAI)</text>
+      <text x="14" y="38" class="card-desc">SHAP-style factor rankings,</text>
+      <text x="14" y="52" class="card-desc">speed &amp; road surface impact</text>
+    </g>
+
+    <g transform="translate(868, 58)">
+      <rect width="188" height="65" class="component-card" />
+      <text x="14" y="22" class="card-title">🛡️ Safety Action Center</text>
+      <text x="14" y="38" class="card-desc">Corridor intervention matrix,</text>
+      <text x="14" y="52" class="card-desc">PDF audit report generator</text>
+    </g>
+
+    <!-- Bottom Row: Frontend Services & Resilient Dual Engine -->
+    <g transform="translate(24, 138)">
+      <rect width="500" height="65" class="component-card" fill="#F8FAFC"/>
+      <text x="16" y="24" class="card-title">⚡ Centralized API Client (api.ts)</text>
+      <text x="16" y="42" class="card-desc">• Auto health-check ping to R server at :8000</text>
+      <text x="16" y="56" class="card-desc">• Deep JSON unboxing &amp; scalar type normalization</text>
+    </g>
+
+    <g transform="translate(540, 138)">
+      <rect width="516" height="65" class="component-card" fill="#EFF6FF" stroke="#93C5FD"/>
+      <text x="16" y="24" class="card-title" fill="#1E40AF">🔄 Smart Dual-Mode Fallback Engine (predictionService.ts)</text>
+      <text x="16" y="42" class="card-desc">• Seamless online routing to live R Plumber API</text>
+      <text x="16" y="56" class="card-desc">• Embedded in-browser Random Forest simulation if R server is offline</text>
+    </g>
+  </g>
+
+  <!-- Connector Line 2 to 3 -->
+  <path d="M 600 475 L 600 510" class="arrow-solid" marker-end="url(#arrowhead)"/>
+  <rect x="510" y="482" width="180" height="20" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="600" y="496" font-family="Inter" font-size="10" font-weight="600" fill="#2563EB" text-anchor="middle">Plumber REST API Controller (:8000)</text>
+
+  <!-- ==================== LAYER 3: R MACHINE LEARNING ENGINE ==================== -->
+  <g transform="translate(60, 515)">
+    <rect width="1080" height="195" class="layer-card layer-4" filter="url(#shadow)"/>
+    <text x="24" y="30" class="layer-title" fill="#92400E">3. Machine Learning &amp; Analytics Layer (R Plumber REST API Engine)</text>
+    <text x="24" y="46" class="layer-sub" fill="#B45309">R 4.x Microservice Exposing High-Throughput Statistical &amp; Predictive Endpoints</text>
+
+    <!-- Plumber Endpoints Card -->
+    <g transform="translate(24, 58)">
+      <rect width="280" height="120" class="component-card" />
+      <text x="14" y="22" class="card-title">🌐 R Plumber Endpoints (plumber.R)</text>
+      <text x="14" y="40" class="card-desc"><code>POST /api/predict</code> (Real-time XAI)</text>
+      <text x="14" y="58" class="card-desc"><code>GET  /api/hotspots</code> (GIS Clusters)</text>
+      <text x="14" y="76" class="card-desc"><code>GET  /api/trends</code> (Temporal Velocity)</text>
+      <text x="14" y="94" class="card-desc"><code>GET  /api/risk-factors</code> (Gini Split)</text>
+      <text x="14" y="112" class="card-desc"><code>GET  /api/overview</code> (KPI Summaries)</text>
+    </g>
+
+    <!-- ML Classifiers Card -->
+    <g transform="translate(320, 58)">
+      <rect width="420" height="120" class="component-card" />
+      <text x="14" y="22" class="card-title">🤖 Machine Learning Classifiers (train_model.R)</text>
+      
+      <rect x="14" y="32" width="392" height="24" rx="6" fill="#F0FDF4" stroke="#86EFAC"/>
+      <text x="22" y="48" font-family="Inter" font-size="10" font-weight="700" fill="#15803D">🌲 Random Forest (Production)</text>
+      <text x="320" y="48" font-family="Inter" font-size="10" font-weight="700" fill="#15803D">87.4% Acc | 0.91 AUC</text>
+
+      <rect x="14" y="60" width="392" height="24" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <text x="22" y="76" font-family="Inter" font-size="10" font-weight="600" fill="#475569">🌳 CART Decision Tree (rpart)</text>
+      <text x="320" y="76" font-family="Inter" font-size="10" font-weight="600" fill="#475569">78.2% Acc | 0.84 AUC</text>
+
+      <rect x="14" y="88" width="392" height="24" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <text x="22" y="104" font-family="Inter" font-size="10" font-weight="600" fill="#475569">📈 Multinomial Logistic (nnet)</text>
+      <text x="320" y="104" font-family="Inter" font-size="10" font-weight="600" fill="#475569">75.6% Acc | 0.80 AUC</text>
+    </g>
+
+    <!-- XAI & Rules Engine Card -->
+    <g transform="translate(756, 58)">
+      <rect width="300" height="120" class="component-card" />
+      <text x="14" y="22" class="card-title">🔬 XAI &amp; Recommendation Engine</text>
+      <text x="14" y="42" class="card-desc">• Mean Decrease in Gini feature ranking</text>
+      <text x="14" y="58" class="card-desc">• Local factor contribution decomposition</text>
+      <text x="14" y="74" class="card-desc">• Automated engineering action matching</text>
+      <text x="14" y="90" class="card-desc">• Variable speed &amp; drainage mitigation</text>
+      <text x="14" y="108" class="card-desc">• Calibrated multi-class probability scores</text>
+    </g>
+  </g>
+
+  <!-- Connector Line 3 to 4 -->
+  <path d="M 600 710 L 600 740" class="arrow-solid" marker-end="url(#arrowhead)"/>
+  <rect x="525" y="715" width="150" height="20" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="600" y="729" font-family="Inter" font-size="10" font-weight="600" fill="#64748B" text-anchor="middle">Data &amp; Artifact Serialization</text>
+
+  <!-- ==================== LAYER 4: DATA & STORAGE ==================== -->
+  <g transform="translate(60, 745)">
+    <rect width="1080" height="115" class="layer-card layer-3" filter="url(#shadow)"/>
+    <text x="24" y="28" class="layer-title" fill="#166534">4. Data Persistence &amp; Model Storage Layer</text>
+    <text x="24" y="44" class="layer-sub" fill="#15803D">Historical Telemetry Repository, Preprocessing Pipeline &amp; Serialized Models</text>
+
+    <!-- Cards -->
+    <g transform="translate(24, 54)">
+      <rect width="330" height="48" class="component-card" />
+      <text x="14" y="22" class="card-title">📁 sample_accidents.csv</text>
+      <text x="14" y="38" class="card-desc">5,000+ crash records with 21 multidimensional features</text>
+    </g>
+
+    <g transform="translate(374, 54)">
+      <rect width="330" height="48" class="component-card" />
+      <text x="14" y="22" class="card-title">💾 severity_rf_model.rds</text>
+      <text x="14" y="38" class="card-desc">Pre-trained serialized Random Forest ensemble model in R</text>
+    </g>
+
+    <g transform="translate(724, 54)">
+      <rect width="332" height="48" class="component-card" />
+      <text x="14" y="22" class="card-title">📋 model_metrics.json</text>
+      <text x="14" y="38" class="card-desc">Confusion matrix, ROC-AUC, Precision, Recall benchmarks</text>
+    </g>
+  </g>
+</svg>
+"""
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(svg_content)
+    print(f"SVG architecture diagram created: {filename}")
+
+if __name__ == "__main__":
+    create_architecture_svg()
